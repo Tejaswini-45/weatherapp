@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-box {
+    margin-bottom: 20px;
+}
+
+.weather-info {
+    margin-top: 20px;
+}
+
+#theme-toggle {
+    padding: 10px;
+}
+
+.dark-mode {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
+.dark-mode input, .dark-mode button {
+    background-color: #555;
+    color: #f0f0f0;
+    border: none;
+}

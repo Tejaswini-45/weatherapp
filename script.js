@@ -1,47 +1,32 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const apiKey = '3940dcfd7d8acf4724291451f3e33a83';
-    const searchBtn = document.getElementById('search-btn');
-    const locationInput = document.getElementById('location-input');
-    const locationElem = document.getElementById('location');
-    const dateTimeElem = document.getElementById('date-time');
-    const temperatureElem = document.getElementById('temperature');
-    const weatherDescriptionElem = document.getElementById('weather-description');
-    const humidityElem = document.getElementById('humidity');
-    const windSpeedElem = document.getElementById('wind-speed');
-    const themeToggleBtn = document.getElementById('theme-toggle');
+document.getElementById('getWeatherBtn').addEventListener('click', function() {
+    const city = document.getElementById('cityInput').value;
+    const apiKey = '3940dcfd7d8acf4724291451f3e33a83'; // Replace with your OpenWeather API key
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-    searchBtn.addEventListener('click', () => {
-        const location = locationInput.value;
-        if (location) {
-            fetchWeatherData(location);
-        }
-    });
-
-    themeToggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-    });
-
-    async function fetchWeatherData(location) {
-        try {
-            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}`);
-            const data = await response.json();
-            if (response.ok) {
-                updateUI(data);
-            } else {
-                alert(data.message);
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
             }
-        } catch (error) {
-            alert('An error occurred while fetching the weather data.');
-        }
-    }
-
-    function updateUI(data) {
-        const date = new Date();
-        locationElem.textContent = `${data.name}, ${data.sys.country}`;
-        dateTimeElem.textContent = date.toLocaleString();
-        temperatureElem.textContent = `Temperature: ${data.main.temp} °C`;
-        weatherDescriptionElem.textContent = `Weather: ${data.weather[0].description}`;
-        humidityElem.textContent = `Humidity: ${data.main.humidity} %`;
-        windSpeedElem.textContent = `Wind Speed: ${data.wind.speed} m/s`;
-    }
+            return response.json();
+        })
+        .then(data => {
+            displayWeather(data);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+            document.getElementById('weatherResult').innerHTML = `<p>${error.message}</p>`;
+        });
 });
+
+function displayWeather(data) {
+    const weatherDiv = document.getElementById('weatherResult');
+    const weatherHTML = `
+        <h2>${data.name}, ${data.sys.country}</h2>
+        <p>Temperature: ${data.main.temp}°C</p>
+        <p>Weather: ${data.weather[0].description}</p>
+        <p>Humidity: ${data.main.humidity}%</p>
+        <p>Wind Speed: ${data.wind.speed} m/s</p>
+    `;
+    weatherDiv.innerHTML = weatherHTML;
+}

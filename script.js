@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const apiKey = 'YOUR_OPEN_WEATHER_API_KEY';
+    const apiKey = 'OPEN_WEATHER_API_KEY';
     const searchBtn = document.getElementById('search-btn');
     const locationInput = document.getElementById('location-input');
     const locationElem = document.getElementById('location');
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchWeatherData(location) {
         try {
-            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`);
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}`);
             const data = await response.json();
             if (response.ok) {
                 updateUI(data);

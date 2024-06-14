@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const apiKey = 'OPEN_WEATHER_API_KEY';
+    const apiKey = '3940dcfd7d8acf4724291451f3e33a83';
     const searchBtn = document.getElementById('search-btn');
     const locationInput = document.getElementById('location-input');
     const locationElem = document.getElementById('location');

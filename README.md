@@ -22,13 +22,13 @@ A simple weather application that provides current weather information based on 
 2. Navigate to the project directory:
     ```
     cd weather-app
-    ```
-3. Open `index.html` in your web browser.
 
 ## Known Issues or Limitations
 - Ensure a valid API key is set in the `script.js` file.
 - The app requires a working internet connection to fetch weather data from the API.
 
-## Screenshots
-![Light Mode](path/to/light-mode-screenshot.png)
-![Dark Mode](path/to/dark-mode-screenshot.png)
+##Usage
+Enter a location in the input field (city name or zip code).
+Click the Search button to fetch and display the weather information.
+Toggle the dark mode/light mode using the button at the top right corner of the application.
+
